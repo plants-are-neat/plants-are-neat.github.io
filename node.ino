@@ -58,6 +58,6 @@ String collectData() {
 	float eco2 = sgp.eCO2;
 	
 	// Return data
-	String results = String(temp) + String(humidity) + Stirng(pressure) + String(lux) + String(eco2) + String(soiltemp);
+	String results = String(temp) + "," + String(humidity) + "," + Stirng(pressure) + "," + String(lux) + "," + String(eco2) + "," + String(soiltemp);
 	return results;
 }
