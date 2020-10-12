@@ -1,4 +1,4 @@
-// Include library files and define an analog pin
+// Include header files and define analog pin
 #define THERM A0;
 #include "Adafruit_VEML7700.h"
 #include "Adafruit_BME280.h"
@@ -60,4 +60,3 @@ String collectData() {
 	// Return data
 	String results = String(temp) + "," + String(humidity) + "," + Stirng(pressure) + "," + String(lux) + "," + String(eco2) + "," + String(soiltemp);
 	return results;
-}
