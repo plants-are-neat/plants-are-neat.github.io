@@ -1,5 +1,5 @@
 // Include header files and define analog pin
-#define THERM A0;
+#define THERM A0
 #include "Adafruit_VEML7700.h"
 #include "Adafruit_BME280.h"
 #include "Adafruit_SGP30.h"
@@ -10,6 +10,7 @@ Adafruit_BME280 bme;
 Adafruit_SGP30 sgp = Adafruit_SGP30();
 
 void setup() {
+  Serial.begin(9600);
 	// Setup Analog Pin
 	pinMode(THERM, INPUT);
 	
@@ -29,8 +30,8 @@ void setup() {
 
 void loop() {
 	String datapoint = collectData();
-	sendData(); // Not written here
-	
+	//sendData(); // Not written here
+	Serial.println(datapoint);
 	// More code goes here
 }
 
@@ -38,11 +39,12 @@ void loop() {
 String collectData() {
 	// Get soil temperature with thermistor
 	float resistance = analogRead(THERM);
-	resistance = (1023 / reading) - 1;
+	resistance = (1023 / resistance) - 1;
 	resistance = 10000.0 / resistance;
 	float B = 3935; // depends on the NTC model
 	float soiltemp = log(resistance / 10000) / B;
 	soiltemp += 1.0 / (25 + 273.15);
+  soiltemp = 1.0 / soiltemp;
 	soiltemp -= 273.15;
 	soiltemp = soiltemp * (9.0 / 5.0) + 32;
 	
@@ -58,5 +60,6 @@ String collectData() {
 	float eco2 = sgp.eCO2;
 	
 	// Return data
-	String results = String(temp) + "," + String(humidity) + "," + Stirng(pressure) + "," + String(lux) + "," + String(eco2) + "," + String(soiltemp);
+	String results = String(temp) + "," + String(humidity) + "," + String(pressure) + "," + String(lux) + "," + String(eco2) + "," + String(soiltemp);
 	return results;
+}
