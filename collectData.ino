@@ -29,8 +29,8 @@ void setup() {
 
 void loop() {
 	String datapoint = collectData();
-	sendData(); // Not written here
-	
+	receiveData(); // Collection of data from other nodes (radio waves to information)
+	sendData(); // Sending the current datapoint and datapoints from other nodes (information to radio waves)
 	// More code goes here
 }
 
