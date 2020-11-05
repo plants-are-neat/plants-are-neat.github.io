@@ -8,6 +8,8 @@
      
     #include <SPI.h>
     #include <RH_RF95.h>
+    // #include <Adafruit_SleepyDog.h>
+    // Download the library from manage libraries section
      
     /* for feather32u4 
     #define RFM95_CS 8
@@ -70,6 +72,7 @@
     void loop()
     {
       delay(1000); // Wait 1 second between transmits, could also 'sleep' here!
+      sleepTimer();
       Serial.println("Transmitting..."); // Send a message to rf95_server
       
       char radiopacket[20] = "Hello World #      ";
@@ -110,3 +113,23 @@
       }
      
     }
+
+    void sleepTimer(void)
+    {
+        digitalWrite(LED_BUILTIN,LOW);
+        Serial.println("Sleep..zzz...");
+        int sleeptime = Watchdog.sleep(); // about 16s max
+        USBDevice.attach();
+        Serial.begin(115200);
+        Serial.println("Awake for now..."); // A flag to tell if its awake
+        // The Serial Monitor will disconnect, so the LED blinking will alert when the board wakes up
+        digitalWrite(LED_BUILTIN, HIGH);
+        delay(100);
+        digitalWrite(LED_BUILTIN,LOW);
+        delay(100);
+        digitalWrite(LED_BUILTIN,HIGH);
+        delay(100);
+        digitalWrite(LED_BUILTIN,LOW);
+        delay(100);
+        digitalWrite(LED_BUILTIN,HIGH);
+}
