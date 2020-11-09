@@ -114,7 +114,7 @@ void initializeLoRa() {
 	rf95.setTxPower(23, false)
 }
 
-bool listen(char* data[]) {
+bool listen(uint8_t data[]) {
 	if (rf95.available()) {
         uint8_t buf[RH_RF95_MAX_MESSAGE_LEN];
         uint8_t len = sizeof(buf);
@@ -126,7 +126,7 @@ bool listen(char* data[]) {
 			Serial.print("RSSI: ");
 			Serial.println(rf95.lastRssi(), DEC);
      
-			data = (char*)buf;
+			data = buf;
 			return true;
         } else {
           Serial.println("Receive failed");
