@@ -44,17 +44,17 @@ void setup() {
 
 void loop() {
 	// Activated and listening somehow
-	uint8_t datapts[RH_RF95_MAX_MESSAGE_LEN];
+	char datapts[RH_RF95_MAX_MESSAGE_LEN];
 	String reading;
 	bool gotData = listen(datapts);
 	
 	if (gotData) {
 		if ((int)datapts[0] == ID) { // If the ID in the message matches this node's ID
 			reading = collectData(); // read data from sensors and...
-			char toSend[length(reading)]; 
-			reading.toCharArray(toSend, length(reading));
+			char toSend[reading.length()]; 
+			reading.toCharArray(toSend, reading.length());
 			respond(toSend); // send it out
-			lastID = (int)datapts[0] // TO ADD HERE: need something to make sure that if a node receives the same message twice, it doesn't echo it the second time
+			lastID = (int)datapts[0]; // TO ADD HERE: need something to make sure that if a node receives the same message twice, it doesn't echo it the second time
 		} else { // otherwise...
 			respond(datapts); // echo the message for other sensor nodes
 		}
@@ -72,7 +72,7 @@ String collectData() {
 	resistance += 1.0 / (25 + 273.15);
 	resistance = 1.0 / resistance;
 	resistance -= 273.15;
-	resistance = resistance * (9.0 / 5.0) + 3
+	resistance = resistance * (9.0 / 5.0) + 3;
 	int soiltemp = round(resistance);
 	
 	// Get lux from VEML7700
@@ -87,7 +87,7 @@ String collectData() {
 	int eco2 = (int)round(sgp.eCO2);
 	
 	// Return data
-	String results = String(ID) + "," + String(temp) + "," + String(humidity) + "," + Stirng(pressure) + "," + String(lux) + "," + String(eco2) + "," + String(soiltemp) + "\n";
+	String results = String(ID) + "," + String(temp) + "," + String(humidity) + "," + String(pressure) + "," + String(lux) + "," + String(eco2) + "," + String(soiltemp) + "\n";
 	return results;
 }
 
@@ -111,10 +111,10 @@ void initializeLoRa() {
     }
     Serial.print("Set Freq to: "); Serial.println(RF95_FREQ);
 	
-	rf95.setTxPower(23, false)
+	rf95.setTxPower(23, false);
 }
 
-bool listen(uint8_t data[]) {
+bool listen(char data[]) {
 	if (rf95.available()) {
         uint8_t buf[RH_RF95_MAX_MESSAGE_LEN];
         uint8_t len = sizeof(buf);
@@ -126,7 +126,7 @@ bool listen(uint8_t data[]) {
 			Serial.print("RSSI: ");
 			Serial.println(rf95.lastRssi(), DEC);
      
-			data = buf;
+			data = (char *)buf;
 			return true;
         } else {
           Serial.println("Receive failed");
@@ -136,7 +136,7 @@ bool listen(uint8_t data[]) {
 	return false;
 }
 
-bool respond(char* data[]) {
+bool respond(char data[]) {
 	Serial.println("Sending...");
 	//for (int i = 0; i < 10; i++) {
 		delay(10);
