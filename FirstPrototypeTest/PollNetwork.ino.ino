@@ -176,7 +176,7 @@
             IDP[i] = buf[i];
           IDCS = IDC;
           IDPS = IDP;
-          if(IDCS == IDPS) {
+          if(ID == IDPS.toInt()) {
             Serial.println("That's me!!");
             delay(100); // Wait before sending the data
             IDCS = collectData();
