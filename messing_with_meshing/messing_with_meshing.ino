@@ -16,8 +16,13 @@ RHMesh manager(rf95, nodeID);
 
 void setup() {
   Serial.begin(9600);
-  if (!manager.init())
+  if (!manager.init()){
     Serial.println("RF95 initialization failed");
+  }
+
+  rf95.setFrequency(868.0);
+  rf95.setTxPower(23, false);
+  
 }
 
 void loop() {
