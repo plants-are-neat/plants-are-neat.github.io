@@ -42,6 +42,8 @@ void setup() {
   WiFi.setPins(SPIWIFI_SS, SPIWIFI_ACK, ESP32_RESETN, ESP32_GPIO0, &SPIWIFI);
 
   // check for the WiFi module:
+  pinMode(8, OUTPUT);
+  digitalWrite(8, HIGH);
   while (WiFi.status() == WL_NO_MODULE) {
     Serial.println("Communication with WiFi module failed!");
     // don't continue
