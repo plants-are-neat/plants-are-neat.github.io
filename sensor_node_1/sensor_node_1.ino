@@ -21,7 +21,7 @@
 RH_RF95 driver(RFM95_CS, RFM95_INT);
 
 // set up manager
-RHMesh manager(driver, CLIENT_ADDRESS);
+RHMesh manager(driver, SERVER1_ADDRESS);
 
 void setup() 
 {
