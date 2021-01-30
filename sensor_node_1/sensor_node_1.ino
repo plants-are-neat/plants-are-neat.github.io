@@ -12,6 +12,9 @@
 
 #define CLIENT_ADDRESS 1
 #define SERVER1_ADDRESS 2
+#define SERVER2_ADDRESS 3
+#define SERVER3_ADDRESS 4
+
 #define THERM A0
 #define RFM95_CS 8
 #define RFM95_RST 4

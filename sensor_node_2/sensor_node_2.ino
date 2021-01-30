@@ -1,7 +1,8 @@
 // modified from rf22_mesh_server
 
+
 #define RH_MESH_MAX_MESSAGE_LEN 50
-#define RF95_FREQ 868.0
+#define RF95_FREQ 868.0 
 
 #include <RHMesh.h>
 #include <RH_RF95.h>
@@ -23,7 +24,7 @@
 RH_RF95 driver(RFM95_CS, RFM95_INT);
 
 // set up manager
-RHMesh manager(driver, CLIENT_ADDRESS);
+RHMesh manager(driver, SERVER2_ADDRESS);
 
 void setup() 
 {
@@ -49,29 +50,24 @@ void setup()
    driver.setTxPower(23, false);
 }
 
-uint8_t data[] = "Hello World!";
-uint8_t buf[RH_MESH_MAX_MESSAGE_LEN];
 
+
+uint8_t data[] = "And hello back to you from server2";
+// Dont put this on the stack:
+uint8_t buf[RH_MESH_MAX_MESSAGE_LEN];
 void loop()
 {
-  Serial.println("Sending to manager_mesh_server");
-    
-  if (manager.sendtoWait(data, sizeof(data), SERVER1_ADDRESS) == RH_ROUTER_ERROR_NONE)
+  uint8_t len = sizeof(buf);
+  uint8_t from;
+  if (manager.recvfromAck(buf, &len, &from))
   {
-    uint8_t len = sizeof(buf);
-    uint8_t from;    
-    if (manager.recvfromAckTimeout(buf, &len, 3000, &from))
-    {
-      Serial.print("got reply from : 0x");
-      Serial.print(from, HEX);
-      Serial.print(": ");
-      Serial.println((char*)buf);
-    }
-    else
-    {
-      Serial.println("No reply, is rf95_mesh_server1 running?");
-    }
+    Serial.print("got request from : 0x");
+    Serial.print(from, HEX);
+    Serial.print(": ");
+    Serial.println((char*)buf);
+
+    // Send a reply back to the originator client
+    if (manager.sendtoWait(data, sizeof(data), from) != RH_ROUTER_ERROR_NONE)
+      Serial.println("sendtoWait failed");
   }
-  else
-     Serial.println("sendtoWait failed. Are the intermediate mesh servers running?");
 }
