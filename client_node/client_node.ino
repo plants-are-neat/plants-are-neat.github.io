@@ -69,7 +69,7 @@ void loop()
     }
     else
     {
-      Serial.println("No reply, is rf95_mesh_server1 running?");
+      Serial.println("No reply, is rf95_mesh_server1, rf95_mesh_server2, rf95_mesh_server3 running?");
     }
   }
   else
