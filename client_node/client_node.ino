@@ -10,9 +10,7 @@
 #include <SPI.h>
 
 #define CLIENT_ADDRESS 1
-#define SERVER1_ADDRESS 2
-#define SERVER2_ADDRESS 3
-#define SERVER3_ADDRESS 4
+int SERVERS[4]; // Array to hold the servers' addresses
 
 #define THERM A0
 #define RFM95_CS 8
@@ -21,7 +19,6 @@
 
 //radio driver
 RH_RF95 driver(RFM95_CS, RFM95_INT);
-
 // set up manager
 RHMesh manager(driver, CLIENT_ADDRESS);
 
@@ -30,6 +27,8 @@ void setup()
   pinMode(RFM95_RST, OUTPUT);
   digitalWrite(RFM95_RST, HIGH);
   Serial.begin(9600);
+  for( i = 0; i < sizeof(SERVERS)/4; i++) // Declares the addresses of the servers
+    SERVERS[i] = i + 1;
   while(!Serial)
   if (!manager.init())
     Serial.println("init failed");
@@ -54,78 +53,29 @@ uint8_t buf[RH_MESH_MAX_MESSAGE_LEN];
 
 void loop()
 {
-  //request node 1
-  Serial.println("Sending to manager_mesh_server, server1");
-    
-  if (manager.sendtoWait(data, sizeof(data), SERVER1_ADDRESS) == RH_ROUTER_ERROR_NONE)
+  int CURRENT_SERVER; // Variable to hold the current server (to loop)
+  for(CURRENT_SERVER = 1; CURRENT_SERVER < sizeof(SERVERS)/4; CURRENT_SERVER++)
   {
-    uint8_t len = sizeof(buf);
-    uint8_t from;    
-    if (manager.recvfromAckTimeout(buf, &len, 3000, &from))
+    Serial.print("Sending to manager_mesh_server, server");
+    Serial.println(CURRENT_SERVER);
+    if (manager.sendtoWait(data, sizeof(data), SERVERS[CURRENT_SERVER]) == RH_ROUTER_ERROR_NONE)
     {
-      Serial.print("got reply from : 0x");
-      Serial.print(from, HEX);
-      Serial.print(": ");
-      Serial.println((char*)buf);
-      Serial.println(driver.lastRssi(),DEC);
-    }
-    else
-    {
-      Serial.println("No reply, is rf95_mesh_server1, rf95_mesh_server2, rf95_mesh_server3 running?");
-    }
-  }
-  else
-     Serial.println("sendtoWait failed. Are the intermediate mesh servers running?");
-
-  delay(5000);
-
-  //request node 2
-    Serial.println("Sending to manager_mesh_server, server2");
-    
-  if (manager.sendtoWait(data, sizeof(data), SERVER2_ADDRESS) == RH_ROUTER_ERROR_NONE)
-  {
-    uint8_t len = sizeof(buf);
-    uint8_t from;    
-    if (manager.recvfromAckTimeout(buf, &len, 3000, &from))
-    {
-      Serial.print("got reply from : 0x");
-      Serial.print(from, HEX);
-      Serial.print(": ");
-      Serial.println((char*)buf);
-      Serial.println(driver.lastRssi(),DEC);
-    }
-    else
-    {
-      Serial.println("No reply, is rf95_mesh_server1, rf95_mesh_server2, rf95_mesh_server3 running?");
-    }
-  }
-  else
-     Serial.println("sendtoWait failed. Are the intermediate mesh servers running?");
-
-  delay(5000);
-
-  //request node 3
-    Serial.println("Sending to manager_mesh_server, server3");
-    
-  if (manager.sendtoWait(data, sizeof(data), SERVER3_ADDRESS) == RH_ROUTER_ERROR_NONE)
-  {
-    uint8_t len = sizeof(buf);
-    uint8_t from;    
-    if (manager.recvfromAckTimeout(buf, &len, 3000, &from))
-    {
-      Serial.print("got reply from : 0x");
-      Serial.print(from, HEX);
-      Serial.print(": ");
-      Serial.println((char*)buf);
-      Serial.println(driver.lastRssi(),DEC);
-    }
-    else
-    {
-      Serial.println("No reply, is rf95_mesh_server1, rf95_mesh_server2, rf95_mesh_server3 running?");
-    }
-  }
-  else
-     Serial.println("sendtoWait failed. Are the intermediate mesh servers running?");
-
-  delay(5000);
+      uint8_t len = sizeof(buf);
+      uint8_t from;    
+      if (manager.recvfromAckTimeout(buf, &len, 3000, &from)) // Waits 3 seconds for a response
+       {
+          Serial.print("got reply from : 0x");
+          Serial.print(from, HEX);
+          Serial.print(": ");
+          Serial.println((char*)buf);
+          Serial.println(driver.lastRssi(),DEC);
+       }
+      else
+      {
+        Serial.println("No reply, is rf95_mesh_server1, rf95_mesh_server2, rf95_mesh_server3 running?");
+      }
+   }
+   else
+    Serial.println("sendtoWait failed. Are the intermediate mesh servers running?");
+   delay(5000); // Delay between requesting data from different nodes 
 }
