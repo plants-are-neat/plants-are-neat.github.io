@@ -70,4 +70,5 @@ void loop()
     if (manager.sendtoWait(data, sizeof(data), from) != RH_ROUTER_ERROR_NONE)
       Serial.println("sendtoWait failed");
   }
+  //Serial.println(driver.lastRssi(),DEC);
 }

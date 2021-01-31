@@ -54,7 +54,8 @@ uint8_t buf[RH_MESH_MAX_MESSAGE_LEN];
 
 void loop()
 {
-  Serial.println("Sending to manager_mesh_server");
+  //request node 1
+  Serial.println("Sending to manager_mesh_server, server1");
     
   if (manager.sendtoWait(data, sizeof(data), SERVER1_ADDRESS) == RH_ROUTER_ERROR_NONE)
   {
@@ -66,6 +67,7 @@ void loop()
       Serial.print(from, HEX);
       Serial.print(": ");
       Serial.println((char*)buf);
+      Serial.println(driver.lastRssi(),DEC);
     }
     else
     {
@@ -74,4 +76,56 @@ void loop()
   }
   else
      Serial.println("sendtoWait failed. Are the intermediate mesh servers running?");
+
+  delay(5000);
+
+  //request node 2
+    Serial.println("Sending to manager_mesh_server, server2");
+    
+  if (manager.sendtoWait(data, sizeof(data), SERVER2_ADDRESS) == RH_ROUTER_ERROR_NONE)
+  {
+    uint8_t len = sizeof(buf);
+    uint8_t from;    
+    if (manager.recvfromAckTimeout(buf, &len, 3000, &from))
+    {
+      Serial.print("got reply from : 0x");
+      Serial.print(from, HEX);
+      Serial.print(": ");
+      Serial.println((char*)buf);
+      Serial.println(driver.lastRssi(),DEC);
+    }
+    else
+    {
+      Serial.println("No reply, is rf95_mesh_server1, rf95_mesh_server2, rf95_mesh_server3 running?");
+    }
+  }
+  else
+     Serial.println("sendtoWait failed. Are the intermediate mesh servers running?");
+
+  delay(5000);
+
+  //request node 3
+    Serial.println("Sending to manager_mesh_server, server3");
+    
+  if (manager.sendtoWait(data, sizeof(data), SERVER3_ADDRESS) == RH_ROUTER_ERROR_NONE)
+  {
+    uint8_t len = sizeof(buf);
+    uint8_t from;    
+    if (manager.recvfromAckTimeout(buf, &len, 3000, &from))
+    {
+      Serial.print("got reply from : 0x");
+      Serial.print(from, HEX);
+      Serial.print(": ");
+      Serial.println((char*)buf);
+      Serial.println(driver.lastRssi(),DEC);
+    }
+    else
+    {
+      Serial.println("No reply, is rf95_mesh_server1, rf95_mesh_server2, rf95_mesh_server3 running?");
+    }
+  }
+  else
+     Serial.println("sendtoWait failed. Are the intermediate mesh servers running?");
+
+  delay(5000);
 }
