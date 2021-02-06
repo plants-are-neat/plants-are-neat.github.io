@@ -1,5 +1,6 @@
 // Include header files and define analog pin
-#define THERM A0
+#define THERM A2
+#define VH400 A5
 #include "Adafruit_VEML7700.h"
 #include "Adafruit_SHT31.h"
 
@@ -9,8 +10,9 @@ Adafruit_SHT31 sht = Adafruit_SHT31();
 
 void setup() {
 	Serial.begin(9600);
-	// Setup Analog Pin
+	// Setup Analog Pins
 	pinMode(THERM, INPUT);
+	pinMode(VH400, INPUT);
 	
 	// Setup VEML7700
 	veml.begin();
@@ -41,16 +43,20 @@ String collectData() {
 	soiltemp += 1.0 / (25 + 273.15);
 	soiltemp = 1.0 / soiltemp;
 	soiltemp -= 273.15;
-	soiltemp = soiltemp * (9.0 / 5.0) + 32;
+	soiltemp = soiltemp * (9.0 / 5.0) + 32; // units of degrees F
+	
+	// Get soil moisture with VH400
+	float moisture = analogRead(VH400);
+	moisture = map(moisture, 0, 1023, 0, 100); // units of %
 	
 	// Get lux from VEML7700
-	float lux = veml.readLux();
+	float lux = veml.readLux(); // units of Lux
 
 	// Get temp and humidity from SHT31-D
-	float temp = sht.readTemperature() * (9.0 / 5.0) + 32;
-	float humidity = sht.readHumidity();
+	float temp = sht.readTemperature() * (9.0 / 5.0) + 32; // units of degrees F
+	float humidity = sht.readHumidity(); // units of %
 	
 	// Return data
-	String results = String(temp) + "," + String(humidity) + "," + String(lux) + "," + String(soiltemp);
+	String results = String(temp) + "," + String(humidity) + "," + String(lux) + "," + String(moisture) + "," + String(soiltemp);
 	return results;
 }
