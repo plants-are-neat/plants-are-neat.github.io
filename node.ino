@@ -50,7 +50,7 @@ String collectData() {
 	float moisture = analogRead(VH400); // get 0-1023 value from VH400
 	float maxMoistureVoltage = (3 * 1023) / 3.3; // VH400 output voltage is 0V - 3V
 	moisture = map(moisture, 0, maxMoistureVoltage, 0, 100); // units of %
-	moisture = round(soiltemp * 10) / 10; //one decimal place
+	moisture = round(moisture * 10) / 10; //one decimal place
 	
 	// Get lux from VEML7700
 	float lux = veml.readLux(); // units of Lux
@@ -60,7 +60,7 @@ String collectData() {
 	float temp = sht.readTemperature() * (9.0 / 5.0) + 32; // units of degrees F
 	temp = round(temp * 10) / 10; // one decimal place
 	float humidity = sht.readHumidity(); // units of %
-	humidity = round(humidito * 10) / 10; // one decimal place
+	humidity = round(humidity * 10) / 10; // one decimal place
 	
 	// Return data
 	String results = String(temp) + "," + String(humidity) + "," + String(lux) + "," + String(moisture) + "," + String(soiltemp);
