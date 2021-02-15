@@ -66,19 +66,6 @@ void setup()
 }
 
 
-// Converting String output to uint8 to send afterwards
-void  StringToUint8(String s, uint8_t * out)
-{
-  int i;
-  for(i = 0; i < s.length(); i+=2)
-  {
-    out[i] = s[i];
-    out[i+1] = s[i+1];
-  }
-  for(i; i < s.length(); i++)
-    out[i] = s[i];
-}
-
 // Collect Data function
 String collectData() {
   // Get soil temperature with thermistor
