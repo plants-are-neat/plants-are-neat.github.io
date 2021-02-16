@@ -77,5 +77,7 @@ void loop()
    }
    else
     Serial.println("sendtoWait failed. Are the intermediate mesh servers running?");
+    for( i = 0; i < RH_MESH_MAX_MESSAGE_LEN; i++) // Reset the buffer
+      buf[i] = 0;
    delay(5000); // Delay between requesting data from different nodes 
 }
