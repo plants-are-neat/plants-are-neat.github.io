@@ -13,6 +13,7 @@
 #define VH400 A5
 #include "Adafruit_VEML7700.h"
 #include "Adafruit_SHT31.h"
+#include <Adafruit_SleepyDog.h>
 
 #define CLIENT_ADDRESS 1
 #define SERVER1_ADDRESS 2
@@ -100,7 +101,20 @@ String collectData() {
   String results = String(temp) + "," + String(humidity) + "," + String(lux) + "," + String(moisture) + "," + String(soiltemp);
   return results;
 }
-
+void Sleep(int Time)
+  { // Determine the amount of loops needed to reach the goal of sleeping for "Time"
+    int rem = 0, stime = 0;
+    rem = Time % 10;
+    stime = (Time-rem)/10;
+    if(stime >= 1) // In case sleeping is only needed less than 10 s
+    {
+      for(int i = 0; i < stime; i++)
+        Watchdog.sleep(10000);
+    }
+    
+    if(rem > 0) // In case of remainder being 0 (multiple of 10)
+      Watchdog.sleep(rem*1000);
+  }
 
 
 uint8_t data[32];
@@ -125,4 +139,7 @@ void loop()
     if (manager.sendtoWait(data, sizeof(data), from) != RH_ROUTER_ERROR_NONE)
       Serial.println("sendtoWait failed");
   }
+ for(i = 0; i < sizeof(buf); i++) // Reset
+    buf[i] = 0;
+ Sleep(30); // Sleeps for 30 secs
 }
