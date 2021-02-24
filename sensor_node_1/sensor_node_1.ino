@@ -141,5 +141,5 @@ void loop()
   }
  for(i = 0; i < sizeof(buf); i++) // Reset
     buf[i] = 0;
- Sleep(30); // Sleeps for 30 secs
+ //Sleep(30); // Sleeps for 30 secs
 }
