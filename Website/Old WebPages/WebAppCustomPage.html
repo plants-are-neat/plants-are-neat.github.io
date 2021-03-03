@@ -1,0 +1,67 @@
+<html>
+<head>
+<title>Consol Data Collection Dashboard</title>
+</head>
+<body>
+<table border=2 bordercolor="#0000FF">
+<tr><td colspan="2">
+<h1 align="center" color="#00FFFF">Consol Data Collection Dashboard</h1>
+</td></tr>
+<tr><td>
+
+<!1st graph needs be integrated with functionality in buttons>
+<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/429987/charts/4?bgcolor=%23ffffff&color=%23ffbb33&dynamic=true&max=15000&results=960&title=Light+level&type=line&yaxismax=30000&yaxismin=0"></iframe>
+
+
+
+</td>
+
+
+<td>
+<!2st graph needs be integrated with functionality in buttons>
+<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/429987/charts/5?bgcolor=%23ffffff&color=%2333ff39&dynamic=true&max=600&min=250&results=960&type=line"></iframe>
+
+
+</td></tr>
+<tr><td>
+
+
+
+<!3st graph needs be integrated with functionality in buttons>
+<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/429987/charts/3?bgcolor=%23ffffff&color=%23cf8b2b&dynamic=true&min=1000&results=960&title=Air+Pressure&type=line"></iframe>
+
+
+
+</td>
+<td>
+<!logo image for each page>
+<iframe width="256" height="256" style="border: 1px solid #cccccc;" src="https://image.freepik.com/free-icon/data-analysis-symbol_318-55043.png"></iframe>
+
+<!buttons to  add functionality to custom page>
+<p>Click to Control Data Displayed</p>
+<button onclick="myFunction0()">Widen View</button>
+<button onclick="myFunction1()">Narrow View</button>
+<button onclick="myFunction2()">Set Overlay</button>
+<button onclick="myFunction3()">Set Limit Views</button>
+<button onclick="myFunction4()">Download as PDF</button>
+
+
+
+<!i need to  make functions for each button to change the values in the displayed graphs.>
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  document.getElementById("demo").innerHTML = "Hello World";
+}
+</script>
+
+
+
+<!links to display navigation to different views, this may be a tab when i learn more>
+<h3>Links</h3>
+<a href="file:///Users/NoahSpahn/Desktop/Course%20Refrences/463/WebAppEnvPage.html">Enviornmental Data</a><br>
+<a href="file:///Users/NoahSpahn/Desktop/Course%20Refrences/463/WebAppSoilPage.html">Soil Data</a><br>
+<a href="file:///Users/NoahSpahn/Desktop/Course%20Refrences/463/WebAppCustomPage.html">Custom Layout</a>
+</td>
+</html>
