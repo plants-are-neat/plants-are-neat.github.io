@@ -1,0 +1,482 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bio Farming an Agriculture Category Flat Bootstrap Responsive website Template | Home :: w3layouts</title>
+<!--mobile apps-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Plants-Are-Neat Project Website" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--//mobile apps-->
+<!-- Custom Theme files -->
+<link href="css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+<link href="css/style.css" type="text/css" rel="stylesheet" media="all">
+<!-- //Custom Theme files -->
+<!-- js -->
+<script src="js/jquery-1.11.1.min.js"></script> 
+<!-- //js -->
+<!--web-fonts-->
+<link href='//fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>	
+<link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800italic,800' rel='stylesheet' type='text/css'>
+<!--//web-fonts-->
+<!-- start-smooth-scrolling-->
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>	
+<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){		
+				event.preventDefault();
+		
+		$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+			});
+		});
+</script>
+<!--//end-smooth-scrolling-->	
+<section>
+	<div = class"Gauges">
+		
+ 
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   <script type="text/javascript">
+      google.charts.load('current', {'packages':['gauge']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['Label', 'Value'],
+          ['Humidity', 80],
+          ['Soil Tempature', 45],
+		  ['Ambient Tempature', 55],
+          ['Soil Moisture', 68],
+		  ['Sunlight', 68]
+        ]);
+
+        var options = {
+          width: 900, height: 270,
+          redFrom: 90, redTo: 100,
+          yellowFrom:75, yellowTo: 90,
+          minorTicks: 5
+        };
+
+        var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+
+        chart.draw(data, options);
+
+        setInterval(function() {
+          data.setValue(0, 1, 30 + Math.round(60 * Math.random()));
+          chart.draw(data, options);
+        }, 13000);
+        setInterval(function() {
+          data.setValue(1, 1, 40 + Math.round(60 * Math.random()));
+          chart.draw(data, options);
+        }, 5000);
+		  setInterval(function() {
+          data.setValue(2, 1, 50 + Math.round(20 * Math.random()));
+          chart.draw(data, options);
+        }, 26000);
+        setInterval(function() {
+          data.setValue(3, 1, 60 + Math.round(20 * Math.random()));
+          chart.draw(data, options);
+        }, 26000);
+		 setInterval(function() {
+          data.setValue(4, 1, 60 + Math.round(20 * Math.random()));
+          chart.draw(data, options);
+        }, 26000);
+      }
+    </script>
+
+	  </section
+	><meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+* {box-sizing: border-box;}
+body {font-family: Verdana, sans-serif;}
+.mySlides {display: none;}
+img {vertical-align: middle;}
+
+/* Slideshow container */
+.slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+
+/* Caption text */
+.text {
+  color: #f2f2f2;
+  font-size: 15px;
+  padding: 8px 12px;
+  position: absolute;
+  bottom: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* The dots/bullets/indicators */
+.dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active {
+  background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+  -webkit-animation-name: fade;
+  -webkit-animation-duration: 3s;
+  animation-name: fade;
+  animation-duration: 12s;
+}
+
+@-webkit-keyframes fade {
+  from {opacity: .01} 
+  to {opacity: 1}
+}
+
+@keyframes fade {
+  from {opacity: .01} 
+  to {opacity: 1}
+}
+
+/* On smaller screens, decrease text size */
+@media only screen and (max-width: 300px) {
+  .text {font-size: 11px}
+}
+</style>
+</head>
+<body>
+	<!--banner-->
+	<div class="banner">
+		<div class="effect5"><!--shadow effect-->
+			<div class="container">
+				<div class="logo">
+					<h1><a href="index.html"><img src="images/logo.jpg" alt="" /></a></h1>
+				</div>
+				<div class="banner-slider">
+					<h2>Smart Mesh Agriculture</h2>
+					<h3>Bringing Big Data to the Great Outdoors</h3>
+					<h4>Data can boost your
+						<div class="pushEffect">
+							<span> Costs Savings</span>
+							<span> Farm Yield</span>
+							<span> Animal Health</span>
+							<span> Human Heath</span>
+							<span> Sustainable Impact</span>
+						</div>
+					</h4>
+				</div>
+				<div class="top-nav">
+					<nav class="navbar navbar-default">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">Menu
+								
+							</button>
+						</div>
+						<!-- Collect the nav links, forms, and other content for toggling -->
+						<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+							<ul class="nav navbar-nav navbar-center">
+								<li class="active"><a href="index.html"><span>H</span><span>O</span><span>M</span><span>E</span></a></li>
+								
+								<li><a href="gallery.html" class="link link--yaku"><span>G</span><span>A</span><span>L</span><span>L</span><span>E</span><span>R</span><span>Y</span></a>
+								
+								<li><a href="about.html" class="link link--yaku"><span>A</span><span>B</span><span>O</span><span>U</span><span>T</span> <span>U</span><span>S</span></a></li>
+								
+								<li><a href="#Graphs" class="scroll link link--yaku"><span>V</span><span>I</span><span>S</span><span>U</span><span>A</span><span>L</span><span>I</span> <span>Z</span><span>A</span><span>T</span><span>I</span><span>O</span><span>N</span><span>S</span></a></li>
+								
+								<li><a href="#contact" class="scroll link link--yaku"><span>C</span><span>O</span><span>N</span><span>T</span><span>A</span><span>C</span><span>T</span> <span>U</span><span>S</span></a></li>
+							</ul>
+							<div class="clearfix"> </div>
+						</div>
+					</nav>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--//banner-->
+	<!--welcome-->
+	<div class="welcome">
+	  <div class="container">
+			<h3 class="title">Welcome</h3>
+			<p>We think plants are Neat and Hopefully through the exploration of our project, you'll find out exactly why. </p>
+			<div class="welcome-info">
+				<div class="col-md-6 welcome-grids">
+					<div class="welcome-img">
+						<img src="images/img1.jpg" class="img-responsive zoom-img" alt=""/>
+					</div>
+				</div>
+				<div class="col-md-6 welcome-grids">
+					<div class="welcome-img">
+						<img src="images/img2.jpg" class="img-responsive zoom-img" alt=""/>
+					</div>
+				</div>
+				<div class="clearfix"> </div>
+			</div>
+			<p>Begining in the Fall of 2020, Our Team set out with the task of building a network capable of cheaply transmitting sensor data in a mesh protocol. We had additional constraints that the Independant Nodes needed to be sustanable without maintenence for longer than 1 calendar year. The system needed to notify the user of broken nodes as well as channel data through redundancy paths. Budgetary constraints enforced that this system be less than $1000 to develop. </p>			
+		</div>
+	</div>
+	<!--//welcome-->
+	<!--services-->
+	
+	<div class="services">
+		<div class="container">
+<h3 class="title" >Current Readings</h3>
+			<a id="Graphs"Visuals</a>
+			<div class = "GuagesGraph" id="chart_div"</div>
+			
+			</div>
+		<div class = "container">
+			<p>Here you can see the most recent sensor data from individual nodes. As well as see notification thresholds. You can read Humidity, Soil/Ambient Temperature, Soil Moisture, and Sunlight Intensity.</p>			
+		</div>
+		<div class="services">
+		<div class="container">
+			<h3 class="title">Readings Over Time</h3>
+			
+			
+
+<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1226802/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+
+
+			
+
+<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1226802/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+
+
+			
+
+<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1226802/charts/3?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+
+
+			
+
+<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1226802/charts/4?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+
+
+			
+
+<iframe width="450" height="260" style="border: 1px solid #cccccc;" src="https://thingspeak.com/channels/1226802/charts/5?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+
+
+			</div>
+		<div class = "container">
+			<p>Here you can see the node sensor data from individual nodes over time. You can read Humidity, Soil/Ambient Temperature, Soil Moisture, and Sunlight Intensity.</p>			
+		</div>
+			
+	<!--//services-->
+	<!--popular-->
+	<div class="popular">
+	  <div class="container">
+			<div class="col-md-8 popular-grids">
+				<h4>Meet Our Client Eugene Kolo</h4>
+
+				<h5>The Best Client in the World! </h5>
+				<div class="bottom-popular">
+					<div class="col-md-6 popular-text">
+						<h6>Hire Eugene Kolo!</h6>
+						<p>
+Eugene Kolodenker is the most talented Securities Engineer in North America. While he currently works as a Staff Security Engineer, his next position will be Billionaire. Why, you ask? Because he happened to back then invest in the best technological innovation in mesh agricultural communication technology. Hire this genius, and you can expect similar results. Eugene agrees. Plants Are Neat. (*this is not legal advice, nor am I a doctor.) </p>
+						<a href="https://www.linkedin.com/in/eugenekolo/" class="btn btn-1 btn-1b">Read More</a>
+					</div>
+					<div class="col-md-6 popular-text">
+						<h6>Apply to Date Eugene Kolo </h6>
+						<p>Feel free to slide in to Eugene's DMs. It's not weird you're weird. He's wicked smaht you can read some of his words below. </p>
+						<a href="https://twitter.com/eugenekolo" class="btn btn-1 btn-1b">Read More</a>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+			<div class="col-md-4 popular-grids popular-img">
+				<img src="images/img3.jpg" class="img-responsive zoom-img" alt=""/>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+			<div class="slideshow-container">
+
+<div class="mySlides fade">
+  <div class="numbertext">1 / 4</div>
+  <img src="images/tweet1.png" style="width:100%">
+  <div class="text">A Motivator!</div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">2 / 4</div>
+  <img src="images/tweet2.png" style="width:100%">
+  <div class="text">*sings* I close my eyes & the flashback starts *sings*</div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">3 / 4</div>
+  <img src="images/tweet3.png" style="width:100%">
+  <div class="text">Wicked Smaht</div>
+</div>
+
+<div class="mySlides fade">
+  <div class="numbertext">4 / 4</div>
+  <img src="images/tweet4.png" style="width:100%">
+  <div class="text">Unfortunately, the Hoff was unavailable for comment.</div>
+</div>
+</div>
+<br>
+
+<div style="text-align:center">
+  <span class="dot"></span> 
+  <span class="dot"></span> 
+  <span class="dot"></span>
+  <span class="dot"></span>
+</div>
+
+<script>
+var slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}    
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+  setTimeout(showSlides, 10000); // Change image every 10 seconds
+}
+</script>
+		
+	<!--//popular-->
+	<!--contact-->
+	<div class="contact" id="contact">
+		<div class="map">
+			<iframe width="600" height="450" style="border:0" loading="lazy" allowfullscreen src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJFzjlY_B544kRyL6j4ABuNCs&key=AIzaSyAkp9c2QOXIY6zjbvvYxuDGzcsYvm2XZrA"></iframe> 
+			<div class="map-color">
+			</div>
+		</div>
+		<div class="contact-grids">
+			<div class="col-md-4 contact-grid news-ltr">
+				<div class="newsletter">
+					<h3><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>Newsletter</h3>
+				</div>
+				<form>
+					<input type="text" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+					<input type="submit" value="Subscribe" >
+				</form>
+			</div>
+			<div class="col-md-5 contact-grid">
+				<form>
+					<input type="text" value="Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Name';}" required="">
+					<input type="text" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+					<textarea type="text"  onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Message...';}" required="">Message...</textarea>
+					<input type="submit" value="Submit" >
+				</form>
+			</div>
+			<div class="col-md-3 contact-grid">
+				<div class="call">
+					<div class="col-xs-2 contact-grdl">
+					</div>
+					<div class="col-xs-10 contact-grdr">
+						<ul>
+							<li>Created By:</li>
+							<li>Ben Lively</li>
+							<li>Noah Spahn</li>
+							<li>Maxine Loebs</li>
+							<li>Sergio Pareja</li>
+							<li>Emanual Parez</li>
+						</ul>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+				<div class="address">
+					<div class="col-xs-2 contact-grdl">
+					</div>
+					<div class="col-xs-10 contact-grdr">
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+				<div class="mail">
+					<div class="col-xs-2 contact-grdl">
+						<span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+					</div>
+					<div class="col-xs-10 contact-grdr">
+						<ul>
+							<li><a href="blivney@bu.edu">blivney@bu.edu</a></li>
+						</ul>
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+			<div class="clearfix"> </div>
+		</div>
+	</div>
+	<!--//contact-->
+	<!--footer-->
+	<div class="footer">
+		<div class="footer-info">
+		  <div class="container">	
+				<div class="icons">	
+					<ul>
+						<li><a href="#" data-toggle="tooltip" data-placement="top" title="Facebook"><img src="images/i1.png" alt=""/></a></li>
+						<li><a href="#" data-toggle="tooltip" data-placement="top" title="Twitter"><img src="images/i2.png" alt=""/> </a></li>
+						<li><a href="#" data-toggle="tooltip" data-placement="top" title="Google+"><img src="images/i3.png" alt=""/></a></li>
+						<li><a href="#" data-toggle="tooltip" data-placement="top" title="LinkedIn"><img src="images/i4.png" alt=""/> </a></li>
+						<li><a href="#" data-toggle="tooltip" data-placement="top" title="Pinterest"><img src="images/i5.png" alt=""/> </a></li>
+					</ul>
+					<script>$(function () {
+					  $('[data-toggle="tooltip"]').tooltip()
+					})</script>
+				</div>
+				<p>© 2016 Bio Farming . All rights reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>					
+			</div>
+		</div>
+	</div>
+	<!--//footer-->
+	<!--smooth-scrolling-of-move-up-->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			/*
+			var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear' 
+			};
+			*/
+			
+			$().UItoTop({ easingType: 'easeOutQuart' });
+			
+		});
+	</script>
+	<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+	<!--//smooth-scrolling-of-move-up-->
+	<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/bootstrap.js"></script>
+</body>
+</html>
