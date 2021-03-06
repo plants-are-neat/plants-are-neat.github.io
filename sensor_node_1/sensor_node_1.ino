@@ -2,7 +2,7 @@
 
 
 #define RH_MESH_MAX_MESSAGE_LEN 50
-#define RF95_FREQ 868.0 
+#define RF95_FREQ 915.0 
 
 #include <RHMesh.h>
 #include <RH_RF95.h>
