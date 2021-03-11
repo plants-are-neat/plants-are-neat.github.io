@@ -1,8 +1,6 @@
-// modified from rf22_mesh_server
-
-
+// modified from rf22_mesh_server 
 #define RH_MESH_MAX_MESSAGE_LEN 50
-#define RF95_FREQ 915.0 
+#define RF95_FREQ 915.0
 
 #include <RHMesh.h>
 #include <RH_RF95.h>
@@ -117,29 +115,38 @@ void Sleep(int Time)
   }
 
 
-uint8_t data[32];
+uint8_t data[50];
 // Dont put this on the stack:
 uint8_t buf[RH_MESH_MAX_MESSAGE_LEN];
+int sleepFlag = 0;
 void loop()
 {
   int i;
   uint8_t len = sizeof(buf);
   uint8_t from;
   String datapoints = collectData();
+  for(i = 0; i < sizeof(data); i++)
+    data[i] = 0;
   for(i = 0; i < datapoints.length(); i++)
     data[i] = datapoints[i];
   if (manager.recvfromAck(buf, &len, &from))
   {
     Serial.print("got request from : 0x");
     Serial.print(from, HEX);
-    Serial.print(": ");
+    Serial.println(": ");
     Serial.println((char*)buf);
 
     // Send a reply back to the originator client
-    if (manager.sendtoWait(data, sizeof(data), from) != RH_ROUTER_ERROR_NONE)
+    if (manager.sendtoWait(data, sizeof(data), from) == RH_ROUTER_ERROR_NONE)
+      sleepFlag = 1; // When it sends the information successfully, go to sleep
+    else
       Serial.println("sendtoWait failed");
   }
  for(i = 0; i < sizeof(buf); i++) // Reset
     buf[i] = 0;
- //Sleep(30); // Sleeps for 30 secs
+    
+ if(sleepFlag){
+  Sleep(300); // Sleeps for 30 secs
+  sleepFlag = 0;
+ }
 }
