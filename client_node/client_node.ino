@@ -1,7 +1,7 @@
 // modified from rf22_mesh_server
 
 #define RH_MESH_MAX_MESSAGE_LEN 50
-#define RF95_FREQ 915.0
+#define RF95_FREQ 915
 
 #include <RHMesh.h>
 #include <RH_RF95.h>
@@ -10,7 +10,10 @@
 #include <SPI.h>
 
 #define CLIENT_ADDRESS 1
-int SERVERS[4]; // Array to hold the servers' addresses
+
+#define numServers 4
+int SERVERS[numServers];
+int counters[numServers];
 
 #define THERM A0
 #define RFM95_CS 8
@@ -19,17 +22,23 @@ int SERVERS[4]; // Array to hold the servers' addresses
 
 //radio driver
 RH_RF95 driver(RFM95_CS, RFM95_INT);
+
 // set up manager
 RHMesh manager(driver, CLIENT_ADDRESS);
 
 void setup() 
 {
+  int i;
   pinMode(RFM95_RST, OUTPUT);
   digitalWrite(RFM95_RST, HIGH);
   Serial.begin(9600);
-  for( i = 0; i < sizeof(SERVERS)/4; i++) // Declares the addresses of the servers
+
+  for( i = 0; i < numServers; i++) { // Initialise values
     SERVERS[i] = i + 1;
+    counters[i] = 0;
+  }
   while(!Serial)
+  Serial.println(sizeof(SERVERS));
   if (!manager.init())
     Serial.println("init failed");
   while (!driver.init()) {
@@ -48,15 +57,17 @@ void setup()
    driver.setTxPower(23, false);
 }
 
-uint8_t data[] = "Hello World!";
+uint8_t data[] = "Hi, send me the collected data!";
 uint8_t buf[RH_MESH_MAX_MESSAGE_LEN];
 
 void loop()
 {
-  int CURRENT_SERVER; // Variable to hold the current server (to loop)
+  int CURRENT_SERVER, i; // Variable to hold the current server (to loop)
   for(CURRENT_SERVER = 1; CURRENT_SERVER < sizeof(SERVERS)/4; CURRENT_SERVER++)
   {
-    Serial.print("Sending to manager_mesh_server, server");
+    for( i = 0; i < RH_MESH_MAX_MESSAGE_LEN; i++)
+      buf[i] = 0;
+    Serial.print("Sending poll request from server");
     Serial.println(CURRENT_SERVER);
     if (manager.sendtoWait(data, sizeof(data), SERVERS[CURRENT_SERVER]) == RH_ROUTER_ERROR_NONE)
     {
@@ -65,19 +76,19 @@ void loop()
       if (manager.recvfromAckTimeout(buf, &len, 3000, &from)) // Waits 3 seconds for a response
        {
           Serial.print("got reply from : 0x");
-          Serial.print(from, HEX);
-          Serial.print(": ");
+          Serial.println(from, HEX);
+          Serial.println("The collected data is:");
           Serial.println((char*)buf);
-          Serial.println(driver.lastRssi(),DEC);
+          //Serial.println(driver.lastRssi(),DEC);
        }
-      else
+      else // Removing the error message
       {
-        Serial.println("No reply, is rf95_mesh_server1, rf95_mesh_server2, rf95_mesh_server3 running?");
+        //Serial.println("No reply, is rf95_mesh_server1, rf95_mesh_server2, rf95_mesh_server3 running?");
       }
    }
    else
     Serial.println("sendtoWait failed. Are the intermediate mesh servers running?");
-    for( i = 0; i < RH_MESH_MAX_MESSAGE_LEN; i++) // Reset the buffer
-      buf[i] = 0;
-   delay(5000); // Delay between requesting data from different nodes 
+   delay(3000); // Delay between requesting data from different nodes 
+
+  }
 }
