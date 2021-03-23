@@ -46,6 +46,8 @@ String getData() {
     ((digitalRead(D6) == HIGH) ? 2 : 0) +
     ((digitalRead(D7) == HIGH) ? 4 : 0) +
     ((digitalRead(D8) == HIGH) ? 8 : 0);
+  if (num == 12) return String(":");
+  if (num == 14) return String(".");
   if (num == 14) return String(",");
   if (num == 15) return String("|");
   return String(num);

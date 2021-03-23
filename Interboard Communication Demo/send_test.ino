@@ -21,6 +21,10 @@ void loop() {
       num = 14;
     } else if (msg[i] == '|') {
       num = 15;
+    } else if (msg[i] == '.') {
+	  num = 13;
+	} else if (msg[i] == ':' {
+	  num = 12;
     } else {
       num = 6; //(int) msg[i];
     }
