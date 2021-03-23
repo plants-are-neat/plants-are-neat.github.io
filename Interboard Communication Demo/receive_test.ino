@@ -1,7 +1,7 @@
 // Data pins D5 D6 D7 D8
 #define latchIN D2
 #define recOUT D1
-
+String msg = "";
 void setup() {
   Serial.begin(9600);
   pinMode(D5, INPUT);
@@ -12,20 +12,24 @@ void setup() {
   pinMode(recOUT, OUTPUT);
   digitalWrite(recOUT, LOW);
   delay(1000);
+
 }
 
 void loop() {
-  String msg = "huh ";
-  if(checkLatch()) {
+  if(checkLatch()) 
+  {
     String s = getData();
     if (s[0] != '|') {
       msg.concat(s);
       Serial.print(s);
-      Serial.println(msg);
-    } else {
+      Serial.println("This ran2");
+      //Serial.println(msg);
+    } 
+    else {
       // Push message to console over Wi-Fi
       Serial.println(msg);
       Serial.println("complete");
+      msg = "";
     }
     resetData();
     delay(10);
