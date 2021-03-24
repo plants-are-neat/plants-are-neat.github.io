@@ -13,7 +13,7 @@ void setup() {
 }
 
 void loop() {
-  String msg = "123456789,10|";
+  String msg = "1:2.3456789,10|";
   int num = 0;
   for (int i = 0; i < msg.length(); i++) {
     //Serial.println(num);
@@ -22,11 +22,11 @@ void loop() {
     } else if (msg[i] == '|') {
       num = 15;
     } else if (msg[i] == '.') {
-	  num = 13;
-	} else if (msg[i] == ':' {
-	  num = 12;
+      num = 13;
+    } else if (msg[i] == ':') {
+      num = 12;
     } else {
-      num = 6; //(int) msg[i];
+      num = String(msg[i]).toInt();
     }
     Serial.println(num);
     sendBin(num);

@@ -10,9 +10,10 @@ void setup() {
   pinMode(D8, INPUT);
   pinMode(latchIN, INPUT);
   pinMode(recOUT, OUTPUT);
-  digitalWrite(recOUT, LOW);
-  delay(1000);
-
+  resetData();
+  Serial.println("initialized");
+  delay(5000);
+  Serial.println("GO");
 }
 
 void loop() {
@@ -21,14 +22,12 @@ void loop() {
     String s = getData();
     if (s[0] != '|') {
       msg.concat(s);
-      Serial.print(s);
-      Serial.println("This ran2");
       //Serial.println(msg);
     } 
     else {
       // Push message to console over Wi-Fi
       Serial.println(msg);
-      Serial.println("complete");
+      //Serial.println("complete");
       msg = "";
     }
     resetData();
@@ -47,7 +46,7 @@ String getData() {
     ((digitalRead(D7) == HIGH) ? 4 : 0) +
     ((digitalRead(D8) == HIGH) ? 8 : 0);
   if (num == 12) return String(":");
-  if (num == 14) return String(".");
+  if (num == 13) return String(".");
   if (num == 14) return String(",");
   if (num == 15) return String("|");
   return String(num);
