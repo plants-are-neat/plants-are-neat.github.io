@@ -42,56 +42,90 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<div = class"Gauges">
 		
  
- <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-   <script type="text/javascript">
-      google.charts.load('current', {'packages':['gauge']});
-      google.charts.setOnLoadCallback(drawChart);
+<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+<script type='text/javascript' src='https://www.google.com/jsapi'></script>
+<script type='text/javascript'>
 
-      function drawChart() {
+  // set your channel id here
+  var channel_id = 1226802;
+  // set your channel's read api key here if necessary
+  var api_key = 'NQDCER5LYTP2D57I';
+  // maximum value for the gauge
+  var max_gauge_value = 100;
+  // name of the gauge
+  var gauge_name0 = 'Humidity';
+  var gauge_name1 = 'Soil Tempature';
+  var gauge_name2 = 'Ambient Tempature';
+  var gauge_name3 = 'Soil Moisture';
+  var gauge_name4 = 'Sunlight';
 
-        var data = google.visualization.arrayToDataTable([
-          ['Label', 'Value'],
-          ['Humidity', 80],
-          ['Soil Tempature', 45],
-		  ['Ambient Tempature', 55],
-          ['Soil Moisture', 68],
-		  ['Sunlight', 68]
-        ]);
+  // global variables
+  var chart, charts, data;
 
-        var options = {
-          width: 900, height: 270,
-          redFrom: 90, redTo: 100,
-          yellowFrom:75, yellowTo: 90,
-          minorTicks: 5
-        };
+  // load the google gauge visualization
+  google.load('visualization', '1', {packages:['gauge']});
+  google.setOnLoadCallback(initChart);
 
-        var chart = new google.visualization.Gauge(document.getElementById('chart_div'));
+  // display the data
+  function displayData(point0,point1,point2,point3,point4, gauge_name0, gauge_name1, gauge_name2, gauge_name3, gauge_name4) {
+    data.setValue(0, 0, gauge_name0);
+    data.setValue(0, 1, point0);
+    data.setValue(1, 0, gauge_name1);
+    data.setValue(1, 1, point1);
+    data.setValue(2, 0, gauge_name2);
+    data.setValue(2, 1, point2);
+    data.setValue(3, 0, gauge_name3);
+    data.setValue(3, 1, point3);
+    data.setValue(4, 0, gauge_name4);
+    data.setValue(4, 1, point4);
+    chart.draw(data, options);
+  }
 
-        chart.draw(data, options);
+  // load the data
+  function loadData() {
+    // variable for the data point
+    var f1;
+    var f2;
+    var f3;
+    var f4;
+    var f5;
 
-        setInterval(function() {
-          data.setValue(0, 1, 30 + Math.round(60 * Math.random()));
-          chart.draw(data, options);
-        }, 13000);
-        setInterval(function() {
-          data.setValue(1, 1, 40 + Math.round(60 * Math.random()));
-          chart.draw(data, options);
-        }, 5000);
-		  setInterval(function() {
-          data.setValue(2, 1, 50 + Math.round(20 * Math.random()));
-          chart.draw(data, options);
-        }, 26000);
-        setInterval(function() {
-          data.setValue(3, 1, 60 + Math.round(20 * Math.random()));
-          chart.draw(data, options);
-        }, 26000);
-		 setInterval(function() {
-          data.setValue(4, 1, 60 + Math.round(20 * Math.random()));
-          chart.draw(data, options);
-        }, 26000);
-      }
-    </script>
+    // get the data from thingspeak
+    $.getJSON('https://api.thingspeak.com/channels/' + channel_id + '/feed/last.json?api_key=' + api_key, function(data) {
+
+      // get the data point
+      f1 = data.field1;
+      f2 = data.field2;
+      f3 = data.field3;
+      f4 = data.field4;
+      f5 = data.field5;
+
+      // if there is a data point display it
+      if (f1) {
+        // p = Math.round((p / max_gauge_value) * 100);
+        displayData(f1,f2,f3,f4,f5, gauge_name0,gauge_name1,gauge_name2,gauge_name3,gauge_name4);}
+
+    });
+  }
+
+  // initialize the chart
+  function initChart() {
+
+    data = new google.visualization.DataTable();
+    data.addColumn('string', 'Label');
+    data.addColumn('number', 'Value');
+    data.addRows(5);
+
+    chart = new google.visualization.Gauge(document.getElementById('gauge_div'));
+    options = {width: 900, height: 270, redFrom: 90, redTo: 100, yellowFrom:60, yellowTo: 89, minorTicks: 5};
+
+    loadData();
+
+    // load new data every 30 seconds
+    setInterval('loadData()', 30000);
+  }
+
+</script>
 
 	  </section
 	><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -244,7 +278,11 @@ img {vertical-align: middle;}
 		<div class="container">
 <h3 class="title" >Current Readings</h3>
 			<a id="Graphs"Visuals</a>
-			<div class = "GuagesGraph" id="chart_div"</div>
+			<div id="container">
+      <div id="inner">
+        <div id="gauge_div"></div>
+      </div>
+    </div>
 			
 			</div>
 		<div class = "container">
