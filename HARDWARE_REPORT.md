@@ -20,7 +20,7 @@ Requirement number 2 is met by the onboard sensors, which use the I2C protocol i
 
 ### PCB BOM
 | Item Number | Designator  | Value       | Footprint   | Quantity    | Digikey Part # |
-| ----------- | ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
+| ----------- | ----------- | ----------- | ----------- | ----------- | ----------- |
 | 1 | U1 | MCP16414-I/UN | MSOP-10 | 1 | 150-MCP16414-I/UN-ND |
 | 2 | U2 | BQ24074RGTR | 16-QFN | 1 | 296-38873-1-ND |
 | 3 | U4 | VEML7700-TR | 4-SMD, J-LEAD | 1 | VEML7700CT-ND |
