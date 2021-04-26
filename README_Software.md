@@ -1,6 +1,7 @@
 CODE ON ARDUINO IDE:
 Adafruit Library installed
- 1. Sensor_Node_X.ino
+ 1. Sensor_Node_X.ino:
+This program serves as the outer node code. Initializes the sensors and radio. It includes the function to collect data from the sensors, and the function to send the data to the mother node. In addition, a invididual function to go to low power mode (sleep) for X amount of time. 
     -C++/C
     -Dependencies
       -RadioHead.h
@@ -9,6 +10,7 @@ Adafruit Library installed
       -Adafruit_SHT31.h
       -Adafruit_SleepyDog.h
  2. client_node.ino
+This program serves as the mother node of the network. The code declares the amount of sensor nodes are available, a schedule to request information from the outer nodes, and initiliazes all necessary drivers to request and accept data from the outer nodes.
     -C++/C
     -Dependencies
       -RadioHead.h
