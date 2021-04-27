@@ -1,9 +1,8 @@
 # Team 27 Software README
 ## Introduction
-The smart agriculture sensor 
+The smart agriculture sensor network is comprised of sensor nodes and one gateway node. It also requires a desktop to be able to communicate with the ThingSpeak IoT channels. The code that runs on the desktop can be ran from with any OS except for the batch files, which are just there for convenience. The software in the nodes are there to keep the featherboards consistently sleeping and sending info. On the Desktop side of things, it extrapolates whatever the mothernode gets and sends it off to the GUI.
 
-
-
+## Files
 CODE ON ARDUINO IDE:
 Adafruit Library installed
  1. Sensor_Node_X.ino:
@@ -50,9 +49,20 @@ SerialJS does a few things for the mesh. Firstly, it uses an external library to
 CODE ON WINDOWS
 1. PANinstall.bat
 
+_TITLE Dependencies Installation
+ECHO Installing dependencies, please wait!                              //Echo just prints out a statement
+npm install thingspeakclient                                            //installs the thingspeak client library
+npm install serialport                                                  //installs the serial reader
+npm install prompt-sync                                                 //installs the prompt to ask the user
+ECHO All dependencies downloaded, thank you for your patience!          //Prints out the final message
+PAUSE                                                                   //Waits for a user input to move_
+
 This batch file is made for the simplicity of the user. On the team, there are only windows users so we could not develop this for other operating systems. This batch file installs all NODEjs libraries. It executes and downloads the libraries and waits for the user to close the command prompt.
 
 2. runMESH.bat
+
+_node SerialTest.js                                                     //THis is how a js script is ran
+PAUSE                                                                   //Leaves the prompt open, do not stop the prompt_
 
 This batch file is made for the simplicity of the user. On the team, there are only windows users so we could not develop this for other operating systems. This batch file executes the SerialTest.js. It runs and the promp should be left open for the code to keep executing.
 
@@ -64,5 +74,5 @@ This batch file is made for the simplicity of the user. On the team, there are o
 3. Double click PANinstall.bat first, runMESH may not run if done out-of-order
 4. Double click runMESH.bat
 
-##Libraries
+## Libraries
 
