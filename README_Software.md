@@ -1,6 +1,6 @@
 # Team 27 Software README
 ## Introduction
-The smart agriculture sensor network is comprised of sensor nodes and one gateway node. It also requires a desktop to be able to communicate with the ThingSpeak IoT channels. The code that runs on the desktop can be ran from with any OS except for the batch files, which are just there for convenience. The software in the nodes are there to keep the featherboards consistently sleeping and sending info. On the Desktop side of things, it extrapolates whatever the mothernode gets and sends it off to the GUI.
+The smart agriculture sensor network is comprised of sensor nodes and one gateway node. The project requires a node.js server to communicate with the ThingSpeak IoT channels. While the project was developed in a Windows operating system environemnt, most of the files can be run in different operating system except for the batch files. Correct installion of node.js is also required to allow the project to work properly. The outer microprocessors (nodes) are flashed with a program that allows them to collect sensor data when not sleeping to conserve energy. The node.js server receives information from the mother microprocessor via serial communication to be sent to a remote website.
 
 ## Files
 CODE ON ARDUINO IDE:
