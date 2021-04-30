@@ -75,4 +75,8 @@ This batch file is made for the simplicity of the user. On the team, there are o
 4. Double click runMESH.bat
 
 ## Libraries
+The main two libraries used in this project are RH_RF95 and RHMesh. Both libraries are part of a larger library named RadioHead that allows the use of long range (LoRa) radio communication installed in the arduino. 
 
+RH_RF95 allows the use of two radio wave (868 and 915) lengths which we chose 915 to meet US compliance. It allows sending and receiving packages of information via an object-oriented format. The library consist of drivers and managers to modulize the communication requirements of different microprocessors.
+
+RHMesh allows the use of a mesh network behaviour into the microprocessors instead of naive communication protocols. It includes automatic route discovery when initiliazing the drivers and managers as well as multi-hop routing capabilities thus allowing self-healing if a node is corrupted/broken.
