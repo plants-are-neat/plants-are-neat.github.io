@@ -57,7 +57,7 @@ npm install prompt-sync                                                 //instal
 ECHO All dependencies downloaded, thank you for your patience!          //Prints out the final message
 PAUSE                                                                   //Waits for a user input to move_
 
-This batch file is made for the simplicity of the user. On the team, there are only windows users so we could not develop this for other operating systems. This batch file installs all NODEjs libraries. It executes and downloads the libraries and waits for the user to close the command prompt.
+This batch file is made for the simplicity of the user. Since the developing team consisted of only window users, the installation and batch file was developed only for a windows environment. As a result, future improvement include the implementation of the batch file to work in different operating systems like iOS, Linux, Unix, etc. This batch file installs all NODEjs libraries. It executes and downloads the libraries and waits for the user to close the command prompt.
 
 2. runMESH.bat
 
@@ -75,8 +75,9 @@ This batch file is made for the simplicity of the user. On the team, there are o
 4. Double click runMESH.bat
 
 ## Libraries
-The main two libraries used in this project are RH_RF95 and RHMesh. Both libraries are part of a larger library named RadioHead that allows the use of long range (LoRa) radio communication installed in the arduino. 
+The main two libraries used in this project are RH_RF95 and RHMesh. Both libraries are part of a larger library named RadioHead that allows the use of long range (LoRa) radio communication installed in the Arduino. 
 
-RH_RF95 allows the use of two radio wave (868 and 915) lengths which we chose 915 to meet US compliance. It allows sending and receiving packages of information via an object-oriented format. The library consist of drivers and managers to modulize the communication requirements of different microprocessors.
+RH_RF95 allows the use of two radio wave (868 and 915) lengths. To comply with US regulations, we chose 915 as the default wave length of the network. This can be changed to 868 at the top of each file depending on the user’s country’s regulations. The library is the foundation of the other libraries since the library grants the ability to send and receive packages of information via an object-oriented format. The library consists of drivers and managers to modulate the communication requirements of different microprocessors. While this library allows the communication between nodes, further libraries are needed to achieve the mesh network behavior of route discovery, creation and maintenance of a routing table, and self-healing capabilities. As a result, the next library is needed. Further documentation can be found here: https://github.com/kenbiba/RH-RF95 
 
-RHMesh allows the use of a mesh network behaviour into the microprocessors instead of naive communication protocols. It includes automatic route discovery when initiliazing the drivers and managers as well as multi-hop routing capabilities thus allowing self-healing if a node is corrupted/broken.
+RHMesh allows the use of a mesh network behavior into the microprocessors instead of naive communication protocols. It includes automatic route discovery when initializing the drivers and managers as well as multi-hop routing capabilities thus allowing self-healing if a node is corrupted/broken. This is achieved via the use of routing tables first initialized when initializing the manager and sending the first message to the desired address/location. Even if the message fails to send to the desired node/location, the intermediate nodes are registered into the routing table for an up to date information on the most efficient route to each node. A future improvement to the library can be to decrease the situations that create races. The library is an extension of a different library called RHRouter which is the foundation of the RHMesh library. Further documentation can be found here: https://www.airspayce.com/mikem/arduino/RadioHead/classRHMesh.html 
+
